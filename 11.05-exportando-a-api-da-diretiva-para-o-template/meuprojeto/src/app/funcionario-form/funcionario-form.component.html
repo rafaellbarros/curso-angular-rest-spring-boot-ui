@@ -1,0 +1,22 @@
+<div class="alert alert-success" role="alert" *ngIf="adicionado"><!--[hidden]="!adicionado"-->
+  Funcionário adicionado: <strong>{{nome}}</strong>
+</div>
+<!--
+<div class="form-group">
+  <label>Nome 1</label>
+  <input campoColorido type="text" class="form-control" [(ngModel)]="nome"
+  (focus)="adicionado = false" [cor]="'red'">
+</div>
+-->
+<div class="form-group">
+  <label>Nome 2</label>
+  <input type="text" class="form-control" [(ngModel)]="nome"
+  (focus)="adicionado = false" [campoColorido]="'yellow'" #campo="campoColorido">
+</div>
+
+<button type="button" class="btn btn-primary"
+  (click)="adicionar()" [disabled]="nome.length == 0">Adicionar</button>
+
+<button class="btn btn-info" (click)="campo.colorir()">Colorir</button>
+
+<button class="btn btn-info" (click)="campo.descolorir()">Descolorir</button>

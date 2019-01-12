@@ -1,0 +1,13 @@
+<div class="container">
+
+  <funcionario-form (onFormReady)="aoAdicionar($event)"></funcionario-form>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-2" *ngFor="let funcionario of funcionarios">
+      <funcionario-card [funcionario]="funcionario"></funcionario-card>
+    </div>
+  </div>
+
+</div>
+
+
