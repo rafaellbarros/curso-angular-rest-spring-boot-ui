@@ -5,6 +5,10 @@ class Cliente {
   nome: string;
   email: string;
   profissao: string;
+
+  constructor(profissao?: string) {
+    this.profissao = profissao;
+  }
 }
 
 @Component({
@@ -14,7 +18,7 @@ class Cliente {
 })
 export class AppComponent {
 
-  cliente = new Cliente();
+  cliente = new Cliente('');
   profissoes = ['Programador', 'Empresário', 'Outra'];
   profissao = 'Outra';
 
