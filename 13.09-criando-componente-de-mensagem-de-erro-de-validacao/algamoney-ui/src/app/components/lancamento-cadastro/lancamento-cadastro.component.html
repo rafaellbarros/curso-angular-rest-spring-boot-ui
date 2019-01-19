@@ -1,0 +1,61 @@
+<div class="container">
+  <form>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Novo Lançamento</h1>
+      </div>
+
+      <div class="ui-g-12">
+        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Vencimento</label>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="false"></p-calendar>
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}</label>
+        <p-calendar dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Descrição</label>
+        <input type="text" pInputText name="descricao" ngModel #descricao="ngModel" required minlength="5">
+        <message [control]="descricao" error="required" severity="error" text="Informe uma descrição"></message>
+        <message [control]="descricao" error="minlength" severity="error" text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres."></message>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Valor</label>
+        <input type="text" pInputText placeholder="0,00" name="valor" currencyMask
+        [options]="{ prefix: '', thousands: '.', decimal: ',' , allowNegative: false}"
+        ngModel>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Categoria</label>
+        <p-dropdown [options]="categorias" placeholder="Selecione" [autoWidth]="false"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Pessoa</label>
+        <p-dropdown [options]="pessoas" placeholder="Selecione" [autoWidth]="false" [filter]="true"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Observação</label>
+        <textarea type="text" pInputTextarea rows="3"></textarea>
+      </div>
+
+      <div class="ui-g-12">
+        <button label="Salvar" type="submit" pButton class="ui-button-success" style="margin-right: 3px;"></button>
+        <button label="Novo" type="submit" pButton  class="ui-button-info" style="margin-right: 5px;"></button>
+        <a href="javascript:;">Voltar para a pesquisa</a>
+      </div>
+
+    </div>
+
+  </form>
+</div>
