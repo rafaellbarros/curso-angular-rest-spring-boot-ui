@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CidadeService } from './cidade.service';
+import { Cidade } from './cidade.interface';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { CidadeService } from './cidade.service';
 })
 export class AppComponent implements OnInit {
 
-  cidades = [];
+  cidades: Cidade[];
 
   constructor(private cidadeService: CidadeService) {}
 
@@ -16,10 +17,10 @@ export class AppComponent implements OnInit {
     this.consultar();
   }
 
-  adicionar(nome: string) {
-    this.cidadeService.adicionar({ nome })
-      .subscribe(cidade => {
-        alert(`Cidade "${cidade.nome}" adicionada com código "${cidade.id}"!`);
+  adicionar(cidade: Cidade) {
+    this.cidadeService.adicionar(cidade)
+      .subscribe(resp => {
+        alert(`Cidade "${resp.nome}" adicionada com código "${resp.id}"!`);
         this.consultar();
       });
   }
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-  atualizar(cidade: any) {
+  atualizar(cidade: Cidade) {
     this.cidadeService.atualizar(cidade)
       .subscribe(() => {
         alert('Cidade alterada com sucesso!');

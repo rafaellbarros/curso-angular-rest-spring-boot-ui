@@ -6,7 +6,7 @@
   </div>
 
   <button type="button" class="btn btn-primary"
-    (click)="adicionar(nome.value); nome.value = ''">Adicionar</button>
+    (click)="adicionar({nome: nome.value}); nome.value = ''">Adicionar</button>
 
   <table class="table" style="margin-top: 20px">
     <thead>
