@@ -4,29 +4,26 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ServiceAbstrat implements IService {
+export class ServiceAbstrat<T> implements IService<T> {
 
   private _http: HttpClient;
   private _baseUrl: string;
 
-  constructor(protected http: HttpClient, protected baseUrl: string) {
+  constructor(private http: HttpClient, private baseUrl: string) {
     this._http = this.http;
     this._baseUrl = this.baseUrl;
   }
 
-  consultar = (): Observable<any> => this._http.get(this._baseUrl)
-  .pipe(map(resp => resp), catchError(err =>  throwError(`Error ao consultar.`)));
+  read = (urlResource: string): Observable<T> => this._http.get<T>(`${this._baseUrl}/${urlResource}`)
+    .pipe(map(resp => resp), catchError(err =>  throwError(`Error ao consultar.`)))
 
-  adicionar = (object: any): Observable<any> => this._http.post(this._baseUrl, object)
-    .pipe(map(resp => resp), catchError(err =>  throwError(`Error ao adicionar ${object.id}.`)));
+  create = (urlResource: string, object: T): Observable<T> => this._http.post<T>(`${this._baseUrl}/${urlResource}`, object)
+    .pipe(map(resp => resp), catchError(err =>  throwError(`Error ao adicionar ${object['id']}.`)))
 
-  excluir = (id: number): Observable<any> => this._http.delete(`${this._baseUrl}/${id}`)
-    .pipe(map(resp => resp), catchError(err =>  throwError(`Error ao excluir ${id}.`)));
+  delete = (urlResource: string, object: T): Observable<T> => this._http.delete<T>(`${this._baseUrl}/${urlResource}/${object['id']}`)
+    .pipe(map(resp => resp), catchError(err =>  throwError(`Error ao excluir  ${object['id']}.`)))
 
-  atualizar = (object: any): Observable<any> => this._http.put(`${this._baseUrl}/${object.id}`, object)
-    .pipe(map(resp => resp), catchError(err =>  throwError(`Error ao alterar ${object.id}.`)));
+  update = (urlResource: string, object: T): Observable<T> => this._http.put<T>(`${this._baseUrl}/${urlResource}/${object['id']}`, object)
+    .pipe(map(resp => resp), catchError(err =>  throwError(`Error ao alterar ${object['id']}.`)))
 
 }

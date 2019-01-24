@@ -1,16 +1,31 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { ServiceAbstrat } from './service.abstract';
-import { UrlBase } from './urlbase';
+import { Cidade } from './cidade.interface';
+
+
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class CidadeService extends ServiceAbstrat {
+export class CidadeService {
 
-  constructor(protected http: HttpClient, protected urlBase: UrlBase) {
-    super(http, urlBase.getUrl);
+  private urlBase = 'http://localhost:3000';
+  private urlRersource = 'cidades';
+  private serviceAbastract: ServiceAbstrat<Cidade>;
+
+  constructor(private http: HttpClient) {
+    this.serviceAbastract = new ServiceAbstrat<Cidade>(this.http, this.urlBase);
   }
 
+  consultar = () => this.serviceAbastract.read(this.urlRersource);
+
+  adicionar = (cidade: Cidade) => this.serviceAbastract.create(this.urlRersource, cidade);
+
+  excluir = (cidade: Cidade) => this.serviceAbastract.delete(this.urlRersource, cidade);
+
+  atualizar = (cidade: Cidade) => this.serviceAbastract.update(this.urlRersource, cidade);
+
 }
+

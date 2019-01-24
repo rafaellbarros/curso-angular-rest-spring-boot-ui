@@ -9,7 +9,7 @@ import { Cidade } from './cidade.interface';
 })
 export class AppComponent implements OnInit {
 
-  cidades: Cidade[];
+  cidades: Cidade;
 
   constructor(private cidadeService: CidadeService) {}
 
@@ -25,8 +25,8 @@ export class AppComponent implements OnInit {
       });
   }
 
-  excluir(id: number) {
-    this.cidadeService.excluir(id)
+  excluir(cidade: Cidade) {
+    this.cidadeService.excluir(cidade)
       .subscribe(() => {
         alert('Cidade excluída com sucesso!');
         this.consultar();
@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
         alert('Cidade alterada com sucesso!');
         this.consultar();
       }, error => {
+        console.error(error);
         alert(error);
       });
   }
