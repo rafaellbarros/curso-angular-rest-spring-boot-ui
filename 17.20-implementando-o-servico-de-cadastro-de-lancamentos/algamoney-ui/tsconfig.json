@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@app/*": ["app/*"]
+      "@app/*": ["app/*"],
+      "@lancamentos/*": ["app/modules/lancamentos/*"],
+      "@pessoas/*": ["app/modules/pessoas/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
