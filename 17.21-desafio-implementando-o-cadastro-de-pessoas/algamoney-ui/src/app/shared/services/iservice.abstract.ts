@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 
 export interface IService {
