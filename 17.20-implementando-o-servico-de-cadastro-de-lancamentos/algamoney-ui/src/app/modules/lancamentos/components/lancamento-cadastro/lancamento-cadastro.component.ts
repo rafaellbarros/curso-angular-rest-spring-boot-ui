@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from '@app/categorias';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
-import { PessoaService } from '../../../pessoas/services/pessoa.service';
-import { Lancamento } from '../../models';
-import { FormControl } from '@angular/forms';
-import { LancamentoService } from '../../services/lancamento.service';
-import { ToastyService } from 'ng2-toasty';
 
+import { FormControl } from '@angular/forms';
+
+import { LancamentoService } from '@lancamentos/services';
+
+import { ToastyService } from 'ng2-toasty';
+import { PessoaService } from '@pessoas/services';
+import { Lancamento } from '@lancamentos/models';
 
 @Component({
   selector: 'lancamento-cadastro',
