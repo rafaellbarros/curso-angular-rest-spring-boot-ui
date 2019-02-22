@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 
+import { Utils } from '@app/core/utils';
 import { IAuthService } from './iauth.service';
-import { Observable, throwError, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-import { ErrorHandlerService } from '@app/core/services/error-handler.service';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +32,11 @@ export class AuthService implements IAuthService {
 
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
     return this.http.post(this.oauthTokenUrl, body, { headers }).pipe(map(resp => {
-      this.armazenarToken(resp['access_token']);
+
+      const { access_token } = Utils.json(resp);
+
+      this.armazenarToken(access_token);
+
     }), catchError(resp => {
       if (resp.status === 400) {
         if (resp.error.error === 'invalid_grant') {
