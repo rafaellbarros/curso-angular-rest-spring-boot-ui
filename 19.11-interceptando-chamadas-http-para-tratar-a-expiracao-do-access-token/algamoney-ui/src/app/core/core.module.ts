@@ -12,9 +12,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 registerLocaleData(localePt);
 
-export function tokenGetter() {
-  return localStorage.getItem('token');
-}
 
 @NgModule({
   declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
@@ -24,13 +21,6 @@ export function tokenGetter() {
     ConfirmDialogModule,
     SharedModule,
     HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8080'],
-        blacklistedRoutes: ['http://localhost:8080/oauth/token'],
-      }
-    })
   ],
   exports: [
     NavbarComponent,
