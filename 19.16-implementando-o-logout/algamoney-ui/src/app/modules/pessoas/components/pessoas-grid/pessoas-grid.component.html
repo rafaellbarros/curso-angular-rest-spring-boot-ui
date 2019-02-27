@@ -22,8 +22,16 @@
         <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" style="width: 2em; margin-right: 3px;"
           [routerLink]="['/pessoas', pessoa.codigo]"></a>
         <button pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top" style="width: 2em"
+        class="ui-button-raised ui-button-danger"
         (click)="confirmarExclusao(pessoa)"></button>
       </td>
     </tr>
  </ng-template>
+ <ng-template pTemplate="emptymessage">
+  <tr>
+      <td [attr.colspan]="6">
+          <p class="text-center">Nenhuma pessoa encontrada</p>
+      </td>
+  </tr>
+</ng-template>
 </p-table>

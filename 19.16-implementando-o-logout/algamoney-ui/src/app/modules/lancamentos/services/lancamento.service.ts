@@ -15,13 +15,10 @@ import { map } from 'rxjs/operators';
 })
 export class LancamentoService implements ILancamentoService {
 
-  private urlRersource = 'lancamentos';
-  private service: Service;
+  private urlResource = 'lancamentos';
   private DATE_FORMAT = 'YYYY-MM-DD';
 
-  constructor(private http: MoneyHttp) {
-     this.service = new Service(http);
-  }
+  constructor(private http: MoneyHttp) { }
 
   pesquisar = (filtro: LancamentoFiltro): Observable<any> => {
 
@@ -42,30 +39,30 @@ export class LancamentoService implements ILancamentoService {
       params = params.set('dataVencimentoAte', moment(filtro.dataVencimentoFim).format(this.DATE_FORMAT));
     }
 
-    return this.service.httpGet(`${this.urlRersource}?resumo`, null, params).pipe(map(resp => {
+    return this.http.get<any>(`${Service._baseUrl}/${this.urlResource}?resumo`, { params }).pipe(map(resp => {
 
       const lancamentos = resp['content'];
+      const total = resp['totalElements'];
       const resultado = {
         lancamentos,
-        total: resp['totalElements'],
+        total
       };
       return resultado;
     }));
   }
 
   excluir = (codigo: number): Observable<void> => {
-    return this.service.httpDelete(this.urlRersource, codigo, null).map(() => null);
+    return this.http.delete(`${Service._baseUrl}/${this.urlResource}/${codigo}`).map(() => null);
   }
 
   adicionar = (lancamento: Lancamento): Observable<Lancamento> => {
-    return this.service.httpPost(this.urlRersource, lancamento, null);
+    return this.http.post<any>(`${Service._baseUrl}/${this.urlResource}`, lancamento);
   }
 
   atualizar = (lancamento: Lancamento): Observable<Lancamento> => {
-    return this.service.httpPut(
-            `${this.urlRersource}/${lancamento.codigo}`,
-            lancamento,
-            null).map(resp => {
+    return this.http.put<Lancamento>(
+            `${Service._baseUrl}/${this.urlResource}/${lancamento.codigo}`,
+            lancamento).map(resp => {
               const lancamentoAlterado = <Lancamento>resp;
 
               this.converterStringsParaDatas([lancamentoAlterado]);
@@ -75,7 +72,7 @@ export class LancamentoService implements ILancamentoService {
   }
 
   buscarPorCodigo = (codigo: number): Observable<Lancamento> => {
-    return this.service.httpGet(`${this.urlRersource}/${codigo}` , null)
+    return this.http.get<Lancamento>(`${Service._baseUrl}/${this.urlResource}/${codigo}`)
             .map(resp => {
               const lancamento = <Lancamento>resp;
 

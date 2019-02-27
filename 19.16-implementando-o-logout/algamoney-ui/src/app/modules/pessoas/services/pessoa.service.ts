@@ -17,11 +17,8 @@ import { MoneyHttp } from '@app/modules/seguranca/money-http';
 export class PessoaService implements IPessoaService {
 
   private urlResource = 'pessoas';
-  private service: Service;
 
-  constructor(private http: MoneyHttp) {
-     this.service = new Service(http);
-  }
+  constructor(private http: MoneyHttp) { }
 
   pesquisar = (filtro: PessoaFiltro): Observable<any> => {
 
@@ -34,43 +31,46 @@ export class PessoaService implements IPessoaService {
       params = params.set('nome', filtro.nome);
     }
 
-    return this.service.httpGet(`${this.urlResource}`, null, params).map(resp => {
+    return this.http.get<any>(`${Service._baseUrl}/${this.urlResource}`, { params }).pipe(map(resp => {
 
       const pessoas = resp['content'];
       const total = resp['totalElements'];
       const resultado = {
         pessoas,
-        total: total
+        total,
       };
       return resultado;
-    });
+    }));
   }
 
   listarTodas = (): Observable<any> => {
-    return this.service.httpGet(this.urlResource, null)
+    return this.http.get<any>(`${Service._baseUrl}/${this.urlResource}`)
       .pipe(map(pessoas => {
-        // const { content } = pessoas;
-        return pessoas['content'];
+        const { content } = pessoas;
+        return content;
       }));
   }
 
   excluir = (codigo: number): Observable<void> =>
-    this.service.httpDelete(this.urlResource, codigo,  null).pipe(map(() => null))
+    this.http.delete(`${Service._baseUrl}/${this.urlResource}/${codigo}`).pipe(map(() => null))
 
   mudarStatus = (codigo: number, novoStatus: boolean) => {
-    return this.service.httpPut(`${this.urlResource}/${codigo}/ativo`, novoStatus,
-      new HttpHeaders({'Content-Type' : 'application/json'})).pipe(map(() => null));
+    const headers = new HttpHeaders({'Content-Type' : 'application/json'});
+    const options = {
+      headers
+    };
+    return this.http.put<any>(`${Service._baseUrl}/${this.urlResource}/${codigo}/ativo`, novoStatus, options).pipe(map(() => null));
   }
 
   adicionar = (pessoa: Pessoa): Observable<Pessoa> => {
-    return this.service.httpPost(this.urlResource, pessoa, null);
+    return this.http.post<Pessoa>(`${Service._baseUrl}/${this.urlResource}`, pessoa);
   }
 
   atualizar(pessoa: Pessoa): Observable<Pessoa> {
-    return this.service.httpPut(`${this.urlResource}/${pessoa.codigo}`, pessoa, null);
+    return this.http.put<Pessoa>(`${Service._baseUrl}/${this.urlResource}/${pessoa.codigo}`, pessoa);
   }
 
   buscarPorCodigo(codigo: number): Observable<Pessoa> {
-    return this.service.httpGet(`${this.urlResource}/${codigo}`, null);
+    return this.http.get<Pessoa>(`${Service._baseUrl}/${this.urlResource}/${codigo}`);
   }
 }

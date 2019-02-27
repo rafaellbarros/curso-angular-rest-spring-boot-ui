@@ -7,21 +7,17 @@ import { Service } from '../shared/services/service';
 import { Categoria } from './categoria.model';
 import { ICategoriaService } from './icategoria.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService implements ICategoriaService {
 
   private urlResource = 'categorias';
-  private service: Service;
 
-  constructor(private http: MoneyHttp) {
-    this.service = new Service(http);
-  }
+  constructor(private http: MoneyHttp) { }
 
   listarTodas = (): Observable<Categoria[]> => {
-    return this.service.httpGet(this.urlResource, this.service.headersAuthorization)
+    return this.http.get<Categoria[]>(`${Service._baseUrl}/${this.urlResource}`)
       .pipe(map(categorias => categorias));
   }
 
