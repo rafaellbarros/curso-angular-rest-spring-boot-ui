@@ -1,16 +1,12 @@
-import { environment } from './../../../../environments/environment';
-
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Service } from '@app/shared/services';
+import { MoneyHttp } from '@app/modules/seguranca/money-http';
 import { Pessoa } from '@pessoas/models';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { IPessoaService } from '.';
 import { PessoaFiltro } from '../models';
-import { Utils } from '@app/core/utils';
-import { MoneyHttp } from '@app/modules/seguranca/money-http';
-
+import { environment } from './../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

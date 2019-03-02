@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { CategoriaService } from '@app/categorias';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
 import { Lancamento } from '@lancamentos/models';
 import { LancamentoService } from '@lancamentos/services';
 import { PessoaService } from '@pessoas/services';
+import { CategoriaService } from '@shared/services/categorias';
 import { ToastyService } from 'ng2-toasty';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'lancamento-cadastro',
