@@ -8,8 +8,6 @@ import { ILancamentoService } from '.';
 import { Lancamento, LancamentoFiltro } from '../models';
 import { environment } from './../../../../environments/environment';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,21 +23,23 @@ export class LancamentoService implements ILancamentoService {
 
   pesquisar = (filtro: LancamentoFiltro): Observable<any> => {
 
-    let params = new HttpParams();
-
-    params = params.set('page', filtro.pagina.toString());
-    params = params.set('size', filtro.itensPorPagina.toString());
+    let params = new HttpParams({
+      fromObject: {
+        page: filtro.pagina.toString(),
+        size: filtro.itensPorPagina.toString()
+      }
+    });
 
     if (filtro.descricao) {
-      params = params.set('descricao', filtro.descricao);
+      params = params.append('descricao', filtro.descricao);
     }
 
     if (filtro.dataVencimentoInicio) {
-      params = params.set('dataVencimentoDe', moment(filtro.dataVencimentoInicio).format(this.DATE_FORMAT));
+      params = params.append('dataVencimentoDe', moment(filtro.dataVencimentoInicio).format(this.DATE_FORMAT));
     }
 
     if (filtro.dataVencimentoFim) {
-      params = params.set('dataVencimentoAte', moment(filtro.dataVencimentoFim).format(this.DATE_FORMAT));
+      params = params.append('dataVencimentoAte', moment(filtro.dataVencimentoFim).format(this.DATE_FORMAT));
     }
 
     return this.http.get<any>(`${this.lancamentosUrl}?resumo`, { params }).pipe(map(resp => {

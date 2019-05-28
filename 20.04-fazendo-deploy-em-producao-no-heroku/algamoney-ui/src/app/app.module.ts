@@ -5,8 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
-import { LancamentosModule } from './modules/lancamentos';
-import { PessoasModule } from './modules/pessoas';
 import { SegurancaModule } from './modules/seguranca';
 
 @NgModule({
@@ -19,8 +17,6 @@ import { SegurancaModule } from './modules/seguranca';
     FormsModule,
 
     CoreModule,
-    LancamentosModule,
-    PessoasModule,
     SegurancaModule,
     AppRoutingModule
 

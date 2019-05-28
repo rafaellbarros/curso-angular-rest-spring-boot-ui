@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { MoneyHttp } from '@app/modules/seguranca/money-http';
+import { environment } from 'environments/environment';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment.prod';
 import { Categoria } from './categoria.model';
 import { ICategoriaService } from './icategoria.service';
+
 
 @Injectable({
   providedIn: 'root'

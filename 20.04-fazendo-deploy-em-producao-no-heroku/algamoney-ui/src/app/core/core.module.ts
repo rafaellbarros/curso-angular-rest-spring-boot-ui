@@ -8,6 +8,7 @@ import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdia
 import { SharedModule } from '../shared/shared.module';
 import { NaoAutorizadoComponent, PaginaNaoEncontradaComponent } from './components/inlines';
 import { NavbarComponent } from './components/navbar';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(localePt);
 
@@ -17,7 +18,7 @@ registerLocaleData(localePt);
     CommonModule,
     ToastyModule.forRoot(),
     ConfirmDialogModule,
-    SharedModule,
+    RouterModule,
     HttpClientModule
   ],
   exports: [

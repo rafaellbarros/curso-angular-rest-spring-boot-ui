@@ -5,9 +5,7 @@
     "paths": {
       "@app/*": ["app/*"],
       "@lancamentos/*": ["app/modules/lancamentos/*"],
-      "@pessoas/*": ["app/modules/pessoas/*"],
-      "@shared/components/*": ["app/shared/components/*"],
-      "@shared/services/*": ["app/shared/services/*"],
+      "@pessoas/*": ["app/modules/pessoas/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

@@ -1,20 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { MessageModule } from 'primeng/components/message/message';
 import { MessageComponent } from './components/message';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [MessageComponent],
   imports: [
     CommonModule,
-    MessageModule,
-    RouterModule
+    MessageModule
   ],
   exports: [
     MessageModule,
-    MessageComponent,
-    RouterModule
+    MessageComponent
   ]
 })
 export class SharedModule { }

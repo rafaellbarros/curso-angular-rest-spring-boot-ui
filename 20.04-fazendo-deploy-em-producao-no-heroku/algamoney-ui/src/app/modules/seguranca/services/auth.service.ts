@@ -27,10 +27,9 @@ export class AuthService implements IAuthService {
     }
 
   public get options() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic YW5ndWxhcjpAbmd1bEByMA=='
-    });
+    const headers = new HttpHeaders()
+        .append('Content-Type', 'application/x-www-form-urlencoded')
+        .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
 
     return {
       headers: headers,
@@ -95,7 +94,7 @@ export class AuthService implements IAuthService {
   }
 
   temQualquerPermissao(roles) {
-    for ( const role of roles) {
+    for (const role of roles) {
       if (this.temPermissao(role)) {
         return true;
       }

@@ -9,3 +9,5 @@ export const environment = {
   tokenWhitelistedDomains: [ 'localhost:8080' ],
   tokenBlacklistedRoutes: [ new RegExp('\/oauth\/token') ]
 };
+
+

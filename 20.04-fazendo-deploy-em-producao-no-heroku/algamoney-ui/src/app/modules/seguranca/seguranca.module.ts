@@ -6,6 +6,7 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { LoginFormComponent } from './components/login-form';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from 'environments/environment';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -21,8 +22,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8080'],
-        blacklistedRoutes: ['http://localhost:8080/oauth/token'],
+        whitelistedDomains: environment.tokenWhitelistedDomains,
+        blacklistedRoutes: environment.tokenBlacklistedRoutes
       }
     }),
     SegurancaRoutingModule
