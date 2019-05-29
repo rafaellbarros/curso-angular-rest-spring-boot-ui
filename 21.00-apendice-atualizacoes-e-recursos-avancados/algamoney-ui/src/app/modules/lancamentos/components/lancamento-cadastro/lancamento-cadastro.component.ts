@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoriaService } from '@app/categorias';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
 import { Lancamento } from '@lancamentos/models';
@@ -24,6 +24,7 @@ export class LancamentoCadastroComponent implements OnInit {
   categorias = [];
   pessoas = [];
   lancamento = new Lancamento();
+  formulario: FormGroup;
 
 
   constructor(
@@ -34,9 +35,11 @@ export class LancamentoCadastroComponent implements OnInit {
     private pessoaService: PessoaService,
     private lancamentoService: LancamentoService,
     private toastr: ToastrService ,
-    private errorHandler: ErrorHandlerService) { }
+    private errorHandler: ErrorHandlerService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.configurarFormulario();
     const { codigo } = this.route.snapshot.params;
 
     this.setTitle('Novo lançamento');
@@ -45,6 +48,26 @@ export class LancamentoCadastroComponent implements OnInit {
 
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  configurarFormulario() {
+    this.formulario = this.fb.group({
+      codigo: [],
+      tipo: ['RECEITA', Validators.required],
+      dataVencimento: [null, Validators.required],
+      dataPagamento: [],
+      decricao: [null, [Validators.required, Validators.minLength(5)]],
+      valor: [null, Validators.required],
+      categoria: this.fb.group({
+        codigo: [null, Validators.required],
+        nome: []
+      }),
+      pessoa: this.fb.group({
+        codigo: [null, Validators.required],
+        nome: [],
+      }),
+      observacao: []
+    });
   }
 
   salvar(form: FormControl) {

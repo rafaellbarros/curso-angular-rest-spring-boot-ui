@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CurrencyMaskModule } from 'ngx-currency-mask';
 import { ButtonModule } from 'primeng/components/button/button';
@@ -29,6 +29,7 @@ import { LancamentosRoutingModule } from './lancamentos.routing.module';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
     ButtonModule,
