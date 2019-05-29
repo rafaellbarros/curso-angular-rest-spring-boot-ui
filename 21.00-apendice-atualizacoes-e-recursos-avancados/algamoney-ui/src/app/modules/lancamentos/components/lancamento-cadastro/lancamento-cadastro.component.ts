@@ -56,7 +56,7 @@ export class LancamentoCadastroComponent implements OnInit {
       tipo: ['RECEITA', Validators.required],
       dataVencimento: [null, Validators.required],
       dataPagamento: [],
-      decricao: [null, [Validators.required, Validators.minLength(5)]],
+      descricao: [null, [Validators.required, Validators.minLength(5)]],
       valor: [null, Validators.required],
       categoria: this.fb.group({
         codigo: [null, Validators.required],
@@ -88,7 +88,7 @@ export class LancamentoCadastroComponent implements OnInit {
   atualizarLancamento() {
     this.lancamentoService.atualizar(this.formulario.value).subscribe(lancamento => {
       // this.lancamento = lancamento;
-      this.formulario.setValue(lancamento);
+      this.formulario.patchValue(lancamento);
 
       this.toastr.success('Lançamento alterado com sucesso!');
       this.atualizarTituloEdicao();
@@ -113,7 +113,7 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.buscarPorCodigo(codigo)
       .subscribe(lancamento => {
         // this.lancamento = lancamento;
-        this.formulario.setValue(lancamento);
+        this.formulario.patchValue(lancamento);
         this.atualizarTituloEdicao();
       }, error => this.errorHandler.handle(error))
 
