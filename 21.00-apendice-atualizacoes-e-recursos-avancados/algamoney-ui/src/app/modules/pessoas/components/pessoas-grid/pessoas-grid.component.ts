@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
+import { AfterViewInit, EventEmitter, Input, Output, ViewChild, OnInit, Component } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { Pessoa, PessoaFiltro } from '../../models';
 
@@ -9,7 +9,7 @@ import { Pessoa, PessoaFiltro } from '../../models';
 })
 export class PessoasGridComponent  implements OnInit, AfterViewInit {
 
-  @ViewChild('tabela') grid;
+  @ViewChild('tabela', { static: true }) grid;
 
   @Input() pessoas = [];
 

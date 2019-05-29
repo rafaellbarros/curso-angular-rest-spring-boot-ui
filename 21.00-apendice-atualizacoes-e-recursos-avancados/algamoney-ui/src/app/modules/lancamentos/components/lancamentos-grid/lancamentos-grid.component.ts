@@ -4,7 +4,6 @@ import { LancamentoFiltro } from '../../models/lancamento-filtro.model';
 import { Lancamento } from '../../models';
 import { AuthService } from '../../../seguranca/services/auth.service';
 
-
 @Component({
   selector: 'lancamentos-grid',
   templateUrl: './lancamentos-grid.component.html',
@@ -12,7 +11,7 @@ import { AuthService } from '../../../seguranca/services/auth.service';
 })
 export class LancamentosGridComponent  implements AfterViewInit {
 
-  @ViewChild('tabela') grid;
+  @ViewChild('tabela', { static: true }) grid;
 
   @Input() lancamentos = [];
 
