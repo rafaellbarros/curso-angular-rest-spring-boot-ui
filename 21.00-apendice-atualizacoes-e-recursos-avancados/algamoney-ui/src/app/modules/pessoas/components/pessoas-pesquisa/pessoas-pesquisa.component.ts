@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
 
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService, LazyLoadEvent } from 'primeng/components/common/api';
 
 import { Pessoa } from '../../models';
@@ -26,7 +26,7 @@ export class PessoasPesquisaComponent implements OnInit {
     private title: Title,
     private pessoaService: PessoaService,
     private errorHandler: ErrorHandlerService,
-    private toasty: ToastyService,
+    private toastr: ToastrService ,
     private confirmation: ConfirmationService) { }
 
   ngOnInit() {
@@ -59,7 +59,7 @@ export class PessoasPesquisaComponent implements OnInit {
     this.pessoaService.excluir(pessoa.codigo).subscribe(resp => {
       this.grid.first = 0;
       this.pesquisar();
-      this.toasty.success('Pessoa excluída com sucesso!');
+      this.toastr.success('Pessoa excluída com sucesso!');
     },
     error => this.errorHandler.handle(error));
   }
@@ -73,7 +73,7 @@ export class PessoasPesquisaComponent implements OnInit {
 
       pessoa.ativo = novoStatus;
 
-      this.toasty.success(`Pessoa ${status} com sucesso!`);
+      this.toastr.success(`Pessoa ${status} com sucesso!`);
     },
     error => this.errorHandler.handle(error));
   }

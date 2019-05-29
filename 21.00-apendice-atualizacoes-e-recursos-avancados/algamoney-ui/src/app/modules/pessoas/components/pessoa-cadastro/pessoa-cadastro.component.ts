@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
 import { Pessoa } from '@app/modules/pessoas/models';
 import { PessoaService } from '@pessoas/services';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { PessoaCadastroComponentImpl, IPessoaCadastroComponentImpl } from './impl';
@@ -23,7 +23,7 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
     private route: ActivatedRoute,
     private router: Router,
     private pessoaService: PessoaService,
-    private toasty: ToastyService,
+    private toastr: ToastrService,
     private errorHandler: ErrorHandlerService
   ) {
     this.impl = new PessoaCadastroComponentImpl(
@@ -31,7 +31,7 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
       route,
       router,
       pessoaService,
-      toasty,
+      toastr,
       errorHandler);
   }
 

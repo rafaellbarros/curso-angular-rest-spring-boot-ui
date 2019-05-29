@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
 import { Router } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
     private auth: AuthService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
-    private toasty: ToastyService) { }
+    private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -23,7 +23,7 @@ export class LoginFormComponent implements OnInit {
   login(usuario: string, senha: string) {
     this.auth.login(usuario, senha)
       .subscribe(() => {
-        this.toasty.success('Login realizado com sucesso!');
+        this.toastr.success('Login realizado com sucesso!');
         this.router.navigate(['/lancamentos']);
     }, error => this.errorHandler.handle(error));
   }

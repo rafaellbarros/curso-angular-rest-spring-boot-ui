@@ -3,7 +3,7 @@ import { AuthService } from '@app/modules/seguranca/services';
 import { LogoutService } from '../../../modules/seguranca/services/logout.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
 import { Router } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -20,13 +20,13 @@ export class NavbarComponent implements OnInit {
     private logoutService: LogoutService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
-    private toasty: ToastyService) { }
+    private toastr: ToastrService) { }
 
   ngOnInit() { }
 
   logout() {
     this.logoutService.logout().subscribe(() => {
-      this.toasty.success('Logout realizado com sucesso!');
+      this.toastr.success('Logout realizado com sucesso!');
       this.router.navigate(['/login']);
     }, error => this.errorHandler.handle(error));
   }

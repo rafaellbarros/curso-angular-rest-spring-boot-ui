@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotAuthenticatedError } from '@app/modules/seguranca/money-http';
@@ -11,7 +11,7 @@ export class ErrorHandlerService {
 
   constructor(
     private router: Router,
-    private toasty: ToastyService) { }
+    private toastr: ToastrService) { }
 
   handle(errorResponse: any) {
     let msg: string;
@@ -49,6 +49,6 @@ export class ErrorHandlerService {
       console.log('Ocorreu um erro', errorResponse);
     }
 
-    this.toasty.error(msg);
+    this.toastr.error(msg);
   }
 }

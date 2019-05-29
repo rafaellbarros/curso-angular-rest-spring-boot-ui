@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PessoaService } from '@app/modules/pessoas/services';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
 import { Pessoa } from '@app/modules/pessoas/models';
 
@@ -17,7 +17,7 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
     private route: ActivatedRoute,
     private router: Router,
     private pessoaService: PessoaService,
-    private toasty: ToastyService,
+    private toastr: ToastrService,
     private errorHandler: ErrorHandlerService
   ) { }
 
@@ -38,7 +38,7 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
 
   adicionarPessoa(form: FormControl): void {
     this.pessoaService.adicionar(this.pessoa).subscribe(pessoa => {
-      this.toasty.success('Pessoa adicionada com sucesso!');
+      this.toastr.success('Pessoa adicionada com sucesso!');
       this.router.navigate(['/pessoas', pessoa.codigo]);
     }, error => this.errorHandler.handle(error));
   }
@@ -46,7 +46,7 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
   atualizarPessoa(form: FormControl): void {
     this.pessoaService.atualizar(this.pessoa).subscribe(pessoa => {
       this.pessoa = this.pessoa;
-      this.toasty.success('Pessoa alterada com sucesso!');
+      this.toastr.success('Pessoa alterada com sucesso!');
       this.atualizarTituloEdicao();
     }, error => this.errorHandler.handle(error));
   }
