@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
     this.auth.login(usuario, senha)
       .subscribe(() => {
         this.toastr.success('Login realizado com sucesso!');
-        this.router.navigate(['/lancamentos']);
+        this.router.navigate(['/dashboard']);
     }, error => this.errorHandler.handle(error));
   }
 

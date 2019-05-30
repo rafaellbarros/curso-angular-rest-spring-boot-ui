@@ -4,6 +4,7 @@
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"],
+      "@dashboard/*": ["app/modules/dashboard/*"],
       "@lancamentos/*": ["app/modules/lancamentos/*"],
       "@pessoas/*": ["app/modules/pessoas/*"],
       "@shared/*": ["app/shared/*"],
