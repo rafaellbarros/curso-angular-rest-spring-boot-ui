@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { PanelModule } from 'primeng/panel';
 import { ChartModule } from 'primeng/chart';
@@ -12,6 +13,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   declarations: [DashboardComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
 
     PanelModule,
     ChartModule,
