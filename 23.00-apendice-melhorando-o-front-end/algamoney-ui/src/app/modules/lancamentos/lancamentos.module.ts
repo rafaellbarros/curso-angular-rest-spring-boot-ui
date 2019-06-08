@@ -11,6 +11,7 @@ import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtexta
 import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
 import { TableModule } from 'primeng/components/table/table';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { SharedModule } from '@app/shared';
 import { LancamentoCadastroComponent } from './components/lancamento-cadastro';
@@ -39,6 +40,7 @@ import { LancamentosRoutingModule } from './lancamentos.routing.module';
     SelectButtonModule,
     DropdownModule,
     CurrencyMaskModule,
+    FileUploadModule,
 
     SharedModule,
     LancamentosRoutingModule

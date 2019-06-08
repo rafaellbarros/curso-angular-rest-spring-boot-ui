@@ -21,6 +21,10 @@ export class LancamentoService {
     this.DATE_FORMAT = 'YYYY-MM-DD';
   }
 
+  urlUploadAnexo(): string {
+    return `${this.lancamentosUrl}/anexo`;
+  }
+
   pesquisar = (filtro: LancamentoFiltro): Observable<any> => {
 
     let params = new HttpParams({
