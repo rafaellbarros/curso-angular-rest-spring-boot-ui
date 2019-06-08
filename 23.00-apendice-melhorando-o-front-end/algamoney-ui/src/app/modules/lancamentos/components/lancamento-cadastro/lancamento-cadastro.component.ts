@@ -57,6 +57,28 @@ export class LancamentoCadastroComponent implements OnInit {
     return this.lancamentoService.urlUploadAnexo();
   }
 
+  aoTerminarUploadAnexo(event) {
+
+    const { body } = event.originalEvent;
+
+    this.formulario.patchValue({
+      anexo: body.nome,
+      urlAnexo: body.url
+    });
+
+  }
+
+  get nomeAnexo() {
+    const nome = this.formulario.get('anexo').value;
+
+    if (nome) {
+      return nome.substring(nome.indexOf('_') + 1, nome.length);
+    }
+
+    return '';
+  }
+
+
   configurarFormulario() {
     this.formulario = this.fb.group({
       codigo: [],
@@ -73,7 +95,9 @@ export class LancamentoCadastroComponent implements OnInit {
         codigo: [null, Validators.required],
         nome: [],
       }),
-      observacao: []
+      observacao: [],
+      anexo: [],
+      urlAnexo: []
     });
   }
 
