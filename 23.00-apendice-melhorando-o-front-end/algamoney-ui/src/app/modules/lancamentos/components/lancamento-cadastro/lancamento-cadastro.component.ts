@@ -53,10 +53,6 @@ export class LancamentoCadastroComponent implements OnInit {
     this.carregarPessoas();
   }
 
-  get urlUploadAnexo() {
-    return this.lancamentoService.urlUploadAnexo();
-  }
-
   aoTerminarUploadAnexo(event) {
 
     const { body } = event.originalEvent;
@@ -68,6 +64,10 @@ export class LancamentoCadastroComponent implements OnInit {
 
   }
 
+  erroUpload(event) {
+    this.toastr.error('Erro ao tentar enviar anexo!');
+  }
+
   get nomeAnexo() {
     const nome = this.formulario.get('anexo').value;
 
@@ -77,6 +77,11 @@ export class LancamentoCadastroComponent implements OnInit {
 
     return '';
   }
+
+  get urlUploadAnexo() {
+    return this.lancamentoService.urlUploadAnexo();
+  }
+
 
 
   configurarFormulario() {
