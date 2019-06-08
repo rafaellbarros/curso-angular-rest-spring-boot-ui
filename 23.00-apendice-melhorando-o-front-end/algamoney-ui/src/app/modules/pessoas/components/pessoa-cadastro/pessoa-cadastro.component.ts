@@ -38,6 +38,10 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
     this.impl.ngOnInit();
   }
 
+  prepararNovoContato() {
+    this.impl.prepararNovoContato();
+  }
+
   salvar(form: FormControl): void {
     this.impl.salvar(form);
   }

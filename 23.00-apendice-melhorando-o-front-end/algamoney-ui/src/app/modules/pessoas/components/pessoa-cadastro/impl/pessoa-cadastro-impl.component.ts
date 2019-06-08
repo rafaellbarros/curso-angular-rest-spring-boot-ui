@@ -11,6 +11,7 @@ import { Pessoa } from '@app/modules/pessoas/models';
 export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroComponentImpl {
 
   public pessoa = new Pessoa();
+  public exbindoFormularioContato = false;
 
   constructor(
     private title: Title,
@@ -27,6 +28,9 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
     if (codigo) { this.carregarPessoa(codigo); }
   }
 
+  prepararNovoContato(): void {
+    this.exbindoFormularioContato = true;
+  }
 
   salvar(form: FormControl): void {
     if (this.editando) {
