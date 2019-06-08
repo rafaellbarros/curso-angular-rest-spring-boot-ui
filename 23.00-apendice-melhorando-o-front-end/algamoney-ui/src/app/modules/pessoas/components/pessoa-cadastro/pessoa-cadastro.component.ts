@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { PessoaCadastroComponentImpl, IPessoaCadastroComponentImpl } from './impl';
+import { Contato } from '../../models';
 
 
 @Component({
@@ -38,8 +39,12 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
     this.impl.ngOnInit();
   }
 
-  prepararNovoContato() {
+  prepararNovoContato(): void {
     this.impl.prepararNovoContato();
+  }
+
+  prepararEdicaoContato(contato: Contato, index: number): void {
+    this.impl.prepararEdicaoContato(contato, index);
   }
 
   confirmarContato(form: FormControl): void {

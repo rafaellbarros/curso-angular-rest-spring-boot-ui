@@ -13,6 +13,7 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
   public pessoa = new Pessoa();
   public exbindoFormularioContato = false;
   public contato: Contato;
+  contatoIndex: number;
 
   constructor(
     private title: Title,
@@ -32,12 +33,25 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
   prepararNovoContato(): void {
     this.exbindoFormularioContato = true;
     this.contato = new Contato();
+    this.contatoIndex = this.pessoa.contatos.length;
+  }
+
+  prepararEdicaoContato(contato: Contato, index: number): void {
+    this.contato = this.clonarContato(contato);
+    this.exbindoFormularioContato = true;
+    this.contatoIndex = index;
   }
 
   confirmarContato(form: FormControl): void {
-    this.pessoa.contatos.push(this.clonarContato(this.contato));
-
+    this.pessoa.contatos[this.contatoIndex] = this.clonarContato(this.contato);
     this.exbindoFormularioContato = false;
+
+    if (this.contato.codigo != null) {
+      this.toastr.success('Contato alterado na lista com sucesso!');
+    } else {
+      this.toastr.success('Contato adicionado na lista com sucesso!');
+    }
+
     form.reset();
   }
 
