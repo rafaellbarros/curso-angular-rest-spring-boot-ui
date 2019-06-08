@@ -16,6 +16,7 @@ import { PessoaCadastroComponent } from './components/pessoa-cadastro';
 import { PessoasGridComponent } from './components/pessoas-grid';
 import { PessoasPesquisaComponent } from './components/pessoas-pesquisa';
 import { PessoasRoutingModule } from './pessoas.routing.module';
+import { PessoaCadastroContatoComponent } from './components/pessoa-cadastro-contato/pessoa-cadastro-contato.component';
 
 
 
@@ -23,7 +24,8 @@ import { PessoasRoutingModule } from './pessoas.routing.module';
   declarations: [
     PessoaCadastroComponent,
     PessoasPesquisaComponent,
-    PessoasGridComponent
+    PessoasGridComponent,
+    PessoaCadastroContatoComponent
   ],
   imports: [
     CommonModule,

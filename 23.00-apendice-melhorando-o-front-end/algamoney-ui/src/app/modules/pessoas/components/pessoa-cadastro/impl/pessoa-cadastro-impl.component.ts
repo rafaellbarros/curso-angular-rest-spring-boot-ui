@@ -11,9 +11,6 @@ import { Pessoa, Contato } from '@app/modules/pessoas/models';
 export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroComponentImpl {
 
   public pessoa = new Pessoa();
-  public exbindoFormularioContato = false;
-  public contato: Contato;
-  contatoIndex: number;
 
   constructor(
     private title: Title,
@@ -30,39 +27,6 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
     if (codigo) { this.carregarPessoa(codigo); }
   }
 
-  prepararNovoContato(): void {
-    this.exbindoFormularioContato = true;
-    this.contato = new Contato();
-    this.contatoIndex = this.pessoa.contatos.length;
-  }
-
-  prepararEdicaoContato(contato: Contato, index: number): void {
-    this.contato = this.clonarContato(contato);
-    this.exbindoFormularioContato = true;
-    this.contatoIndex = index;
-  }
-
-  confirmarContato(form: FormControl): void {
-    this.pessoa.contatos[this.contatoIndex] = this.clonarContato(this.contato);
-    this.exbindoFormularioContato = false;
-
-    if (this.contato.codigo != null) {
-      this.toastr.success('Contato alterado na lista com sucesso!');
-    } else {
-      this.toastr.success('Contato adicionado na lista com sucesso!');
-    }
-
-    form.reset();
-  }
-
-  removerContato(index: number): void {
-    this.pessoa.contatos.splice(index, 1);
-  }
-
-  clonarContato(contato: Contato): Contato {
-    return new Contato(contato.codigo,
-      contato.nome, contato.email, contato.telefone);
-  }
 
   salvar(form: FormControl): void {
     if (this.editando) {

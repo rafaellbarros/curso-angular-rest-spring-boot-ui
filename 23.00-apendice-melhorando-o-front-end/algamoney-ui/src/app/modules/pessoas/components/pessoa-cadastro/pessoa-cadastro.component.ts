@@ -6,8 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { PessoaCadastroComponentImpl, IPessoaCadastroComponentImpl } from './impl';
-import { Contato } from '../../models';
-
 
 @Component({
   selector: 'pessoa-cadastro',
@@ -37,22 +35,6 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
 
   ngOnInit(): void {
     this.impl.ngOnInit();
-  }
-
-  prepararNovoContato(): void {
-    this.impl.prepararNovoContato();
-  }
-
-  prepararEdicaoContato(contato: Contato, index: number): void {
-    this.impl.prepararEdicaoContato(contato, index);
-  }
-
-  confirmarContato(form: FormControl): void {
-    this.impl.confirmarContato(form);
-  }
-
-  removerContato(index: number): void {
-    this.impl.removerContato(index);
   }
 
   salvar(form: FormControl): void {
