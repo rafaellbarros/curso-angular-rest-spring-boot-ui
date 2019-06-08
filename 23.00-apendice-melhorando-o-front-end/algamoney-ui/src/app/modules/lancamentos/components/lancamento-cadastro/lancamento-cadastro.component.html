@@ -75,7 +75,8 @@
       </div>
 
       <div class="ui-g-12">
-        <button label="Salvar" type="submit" pButton class="ui-button-success" style="margin-right: 3px;" [disabled]="formulario.invalid"></button>
+        <button label="Salvar" type="submit" pButton class="ui-button-success" style="margin-right: 3px;" 
+          [disabled]="formulario.invalid || uploadEmAndamento"></button>
         <button label="Novo" type="submit" pButton  class="ui-button-info" style="margin-right: 5px;"
           (click)="novo()"></button>
         <a routerLink="/lancamentos">Voltar para a pesquisa</a>
