@@ -6,12 +6,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PessoaService } from '@app/modules/pessoas/services';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
-import { Pessoa } from '@app/modules/pessoas/models';
+import { Pessoa, Contato } from '@app/modules/pessoas/models';
 
 export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroComponentImpl {
 
   public pessoa = new Pessoa();
   public exbindoFormularioContato = false;
+  public contato: Contato;
 
   constructor(
     private title: Title,
@@ -30,6 +31,7 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
 
   prepararNovoContato(): void {
     this.exbindoFormularioContato = true;
+    this.contato = new Contato();
   }
 
   salvar(form: FormControl): void {
