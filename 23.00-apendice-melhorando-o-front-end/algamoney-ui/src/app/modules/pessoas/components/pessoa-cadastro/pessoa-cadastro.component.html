@@ -61,6 +61,47 @@
       </div>
 
       <div class="ui-g-12">
+        <p-panel header="Contatos">
+          <div class="ui-g">
+            <div class="ui-g-12">
+              <p-table [value]="impl.pessoa.contatos" [responsive]="true">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th class="col-acoes-header"></th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-contato>
+                  <tr>
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>{{ contato.telefone }}</td>
+                    <td class="col-acoes">
+                      <button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                        style="width: 2em; margin-right: 3px;"></button>
+                      <button pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top"
+                        style="width: 2em" class="ui-button-raised ui-button-danger"></button>
+                    </td>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <td colspan="4" class="text-center">
+                      Nenhum contato cadastrado
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+
+      <div class="ui-g-12">
         <button label="Salvar" type="submit" pButton class="ui-button-success" style="margin-right: 3px;" [disabled]="f.invalid"></button>
         <button label="Nova" type="submit" pButton  class="ui-button-info" style="margin-right: 5px;"
           (click)="nova(f)"></button>
