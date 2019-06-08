@@ -34,6 +34,18 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
     this.contato = new Contato();
   }
 
+  confirmarContato(form: FormControl): void {
+    this.pessoa.contatos.push(this.clonarContato(this.contato));
+
+    this.exbindoFormularioContato = false;
+    form.reset();
+  }
+
+  clonarContato(contato: Contato): Contato {
+    return new Contato(contato.codigo,
+      contato.nome, contato.email, contato.telefone);
+  }
+
   salvar(form: FormControl): void {
     if (this.editando) {
       this.atualizarPessoa(form);
