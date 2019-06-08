@@ -12,6 +12,7 @@ import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton
 import { TableModule } from 'primeng/components/table/table';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { SharedModule } from '@app/shared';
 import { LancamentoCadastroComponent } from './components/lancamento-cadastro';
@@ -41,6 +42,7 @@ import { LancamentosRoutingModule } from './lancamentos.routing.module';
     DropdownModule,
     CurrencyMaskModule,
     FileUploadModule,
+    ProgressSpinnerModule,
 
     SharedModule,
     LancamentosRoutingModule
