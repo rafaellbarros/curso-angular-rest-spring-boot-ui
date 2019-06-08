@@ -88,7 +88,8 @@
                         style="width: 2em; margin-right: 3px;"
                         (click)="prepararEdicaoContato(contato, rowIndex)"></a>
                       <button pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top"
-                        style="width: 2em" class="ui-button-raised ui-button-danger"></button>
+                        style="width: 2em" class="ui-button-raised ui-button-danger"
+                        (click)="removerContato(rowIndex)"></button>
                     </td>
                   </tr>
                 </ng-template>

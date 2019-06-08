@@ -51,6 +51,10 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
     this.impl.confirmarContato(form);
   }
 
+  removerContato(index: number): void {
+    this.impl.removerContato(index);
+  }
+
   salvar(form: FormControl): void {
     this.impl.salvar(form);
   }
