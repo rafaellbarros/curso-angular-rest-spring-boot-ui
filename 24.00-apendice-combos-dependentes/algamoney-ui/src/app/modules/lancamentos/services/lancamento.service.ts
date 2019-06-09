@@ -58,13 +58,11 @@ export class LancamentoService {
     }));
   }
 
-  excluir = (codigo: number): Observable<void> => {
-    return this.http.delete(`${this.lancamentosUrl}/${codigo}`).map(() => null);
-  }
+  excluir = (codigo: number): Observable<void> =>
+    this.http.delete(`${this.lancamentosUrl}/${codigo}`)
 
-  adicionar = (lancamento: Lancamento): Observable<Lancamento> => {
-    return this.http.post<any>(this.lancamentosUrl, lancamento);
-  }
+  adicionar = (lancamento: Lancamento): Observable<Lancamento> =>
+    this.http.post<any>(this.lancamentosUrl, lancamento)
 
   atualizar = (lancamento: Lancamento): Observable<Lancamento> => {
     return this.http.put<Lancamento>(

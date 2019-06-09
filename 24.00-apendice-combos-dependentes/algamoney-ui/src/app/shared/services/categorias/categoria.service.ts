@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 
 import { MoneyHttp } from '@app/modules/seguranca/money-http';
@@ -18,8 +17,7 @@ export class CategoriaService {
   }
 
   listarTodas = (): Observable<Categoria[]> => {
-    return this.http.get<Categoria[]>(this.categoriasUrl)
-      .pipe(map(categorias => categorias));
+    return this.http.get<Categoria[]>(this.categoriasUrl);
   }
 
   /*

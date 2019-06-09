@@ -30,7 +30,6 @@ export class ErrorHandlerService {
     } else if (errorResponse instanceof HttpErrorResponse
       && errorResponse.status >= 400 && errorResponse.status <= 499) {
 
-      let errors;
       msg = 'Ocorreu um erro ao processar a sua solicitação';
 
       if (errorResponse.status === 403) {
@@ -38,10 +37,7 @@ export class ErrorHandlerService {
       }
 
       try {
-        errors = errorResponse.error;
-
-        msg = errors[0].mensagemUsuario;
-
+        msg =  errorResponse.error[0].mensagemUsuario;
       } catch (e) { }
 
       console.error('Ocorreu um erro', errorResponse);
