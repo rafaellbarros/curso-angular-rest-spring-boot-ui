@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from './../../../../environments/environment';
 
 import { MoneyHttp } from '@app/modules/seguranca/money-http';
-import { Pessoa } from '@pessoas/models';
+import { Pessoa, Estado, Cidade } from '@pessoas/models';
 import { PessoaFiltro } from '../models';
 
 
@@ -15,9 +15,13 @@ import { PessoaFiltro } from '../models';
 export class PessoaService  {
 
   private pessoasUrl: string;
+  private cidadesUrl: string;
+  private estadosUrl: string;
 
   constructor(private http: MoneyHttp) {
     this.pessoasUrl = `${environment.apiUrl}/pessoas`;
+    this.cidadesUrl = `${environment.apiUrl}/cidades`;
+    this.estadosUrl = `${environment.apiUrl}/estados`;
   }
 
   pesquisar = (filtro: PessoaFiltro): Observable<any> => {
@@ -73,5 +77,15 @@ export class PessoaService  {
 
   buscarPorCodigo(codigo: number): Observable<Pessoa> {
     return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`);
+  }
+
+  listarEstados = (): Observable<Estado[]> => this.http.get(this.estadosUrl);
+
+  pesquisarCidades(estado): Observable<Cidade[]> {
+
+    let params = new HttpParams();
+    params = params.append('estado', estado);
+
+    return this.http.get(this.cidadesUrl, { params });
   }
 }
