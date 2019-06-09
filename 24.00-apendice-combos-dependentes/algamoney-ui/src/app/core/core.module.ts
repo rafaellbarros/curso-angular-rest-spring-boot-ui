@@ -1,13 +1,16 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import localePt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
+
 import { ConfirmationService } from 'primeng/components/common/api';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
-import { NaoAutorizadoComponent, PaginaNaoEncontradaComponent } from './components/inlines';
+import { GrowlModule } from 'primeng/primeng';
+import { MessageService } from 'primeng/components/common/messageservice'
+
 import { NavbarComponent } from './components/navbar';
-import { RouterModule } from '@angular/router';
-import { ToastrModule } from 'ngx-toastr';
+import { NaoAutorizadoComponent, PaginaNaoEncontradaComponent } from './components/inlines';
 
 registerLocaleData(localePt);
 
@@ -15,20 +18,20 @@ registerLocaleData(localePt);
   declarations: [NavbarComponent, PaginaNaoEncontradaComponent, NaoAutorizadoComponent],
   imports: [
     CommonModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
-    }),
-    ConfirmDialogModule,
+    HttpClientModule,
     RouterModule,
-    HttpClientModule
+
+    GrowlModule,
+    ConfirmDialogModule,
   ],
   exports: [
     NavbarComponent,
-    ToastrModule,
+    GrowlModule,
     ConfirmDialogModule
   ],
   providers: [
     ConfirmationService,
+    MessageService,
     { provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
 })

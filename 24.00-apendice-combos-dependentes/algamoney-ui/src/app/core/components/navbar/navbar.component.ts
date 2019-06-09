@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@app/modules/seguranca/services';
-import { LogoutService } from '../../../modules/seguranca/services/logout.service';
-import { ErrorHandlerService } from '../../services/error-handler.service';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
+import { MessageService } from 'primeng/components/common/messageservice';
+
+import { LogoutService } from '../../../modules/seguranca/services/logout.service';
+import { AuthService } from '@app/modules/seguranca/services';
+import { ErrorHandlerService } from '../../services/error-handler.service';
 
 @Component({
   selector: 'navbar',
@@ -20,13 +21,13 @@ export class NavbarComponent implements OnInit {
     private logoutService: LogoutService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private messageService: MessageService) { }
 
   ngOnInit() { }
 
   logout() {
     this.logoutService.logout().subscribe(() => {
-      this.toastr.success('Logout realizado com sucesso!');
+      this.messageService.add({ severity: 'success', detail: 'Logout realizado com sucesso!' });
       this.router.navigate(['/login']);
     }, error => this.errorHandler.handle(error));
   }

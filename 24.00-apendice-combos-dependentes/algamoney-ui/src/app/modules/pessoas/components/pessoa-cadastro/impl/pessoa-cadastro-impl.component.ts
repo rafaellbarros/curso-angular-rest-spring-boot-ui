@@ -1,10 +1,12 @@
 import { OnInit, Output, EventEmitter } from '@angular/core';
-import { IPessoaCadastroComponentImpl } from '.';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+
+import { MessageService } from 'primeng/components/common/messageservice';
+
 import { PessoaService } from '@app/modules/pessoas/services';
-import { ToastrService } from 'ngx-toastr';
+import { IPessoaCadastroComponentImpl } from '.';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
 import { Pessoa } from '@app/modules/pessoas/models';
 
@@ -20,7 +22,7 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
     private route: ActivatedRoute,
     private router: Router,
     private pessoaService: PessoaService,
-    private toastr: ToastrService,
+    private messageService: MessageService,
     private errorHandler: ErrorHandlerService
   ) { }
 
@@ -55,7 +57,7 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
 
   adicionarPessoa(form: FormControl): void {
     this.pessoaService.adicionar(this.pessoa).subscribe(pessoa => {
-      this.toastr.success('Pessoa adicionada com sucesso!');
+      this.messageService.add({ severity: 'success', detail: 'Pessoa adicionada com sucesso!' });
       this.router.navigate(['/pessoas', pessoa.codigo]);
     }, error => this.errorHandler.handle(error));
   }
@@ -63,7 +65,7 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
   atualizarPessoa(form: FormControl): void {
     this.pessoaService.atualizar(this.pessoa).subscribe(pessoa => {
       this.pessoa = this.pessoa;
-      this.toastr.success('Pessoa alterada com sucesso!');
+      this.messageService.add({ severity: 'success', detail: 'Pessoa alterada com sucesso!' });
       this.atualizarTituloEdicao();
     }, error => this.errorHandler.handle(error));
   }

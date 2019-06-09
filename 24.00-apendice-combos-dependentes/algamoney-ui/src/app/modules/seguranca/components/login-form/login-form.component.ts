@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { MessageService } from 'primeng/components/common/messageservice';
+
 import { AuthService } from '../../services';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -15,7 +16,7 @@ export class LoginFormComponent implements OnInit {
     private auth: AuthService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private messageService: MessageService) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,7 @@ export class LoginFormComponent implements OnInit {
   login(usuario: string, senha: string) {
     this.auth.login(usuario, senha)
       .subscribe(() => {
-        this.toastr.success('Login realizado com sucesso!');
+        this.messageService.add({ severity: 'success', detail: 'Login realizado com sucesso!' });
         this.router.navigate(['/dashboard']);
     }, error => this.errorHandler.handle(error));
   }

@@ -1,10 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ErrorHandlerService } from '@app/core/services/error-handler.service';
-import { PessoaService } from '@pessoas/services';
-import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+
+import { MessageService } from 'primeng/components/common/messageservice';
+
+import { ErrorHandlerService } from '@app/core/services/error-handler.service';
+import { PessoaService } from '@pessoas/services';
 import { PessoaCadastroComponentImpl, IPessoaCadastroComponentImpl } from './impl';
 
 @Component({
@@ -21,7 +23,7 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
     private route: ActivatedRoute,
     private router: Router,
     private pessoaService: PessoaService,
-    private toastr: ToastrService,
+    private messageService: MessageService,
     private errorHandler: ErrorHandlerService
   ) {
     this.impl = new PessoaCadastroComponentImpl(
@@ -29,7 +31,7 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
       route,
       router,
       pessoaService,
-      toastr,
+      messageService,
       errorHandler);
   }
 

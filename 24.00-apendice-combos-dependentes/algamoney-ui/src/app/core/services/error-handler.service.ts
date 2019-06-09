@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+
+import { MessageService } from 'primeng/components/common/messageservice';
+
 import { NotAuthenticatedError } from '@app/modules/seguranca/money-http';
 
 @Injectable({
@@ -11,7 +13,7 @@ export class ErrorHandlerService {
 
   constructor(
     private router: Router,
-    private toastr: ToastrService) { }
+    private messageService: MessageService) { }
 
   handle(errorResponse: any) {
     let msg: string;
@@ -49,6 +51,7 @@ export class ErrorHandlerService {
       console.log('Ocorreu um erro', errorResponse);
     }
 
-    this.toastr.error(msg);
+    this.messageService.add({ severity: 'error', detail: msg });
+
   }
 }

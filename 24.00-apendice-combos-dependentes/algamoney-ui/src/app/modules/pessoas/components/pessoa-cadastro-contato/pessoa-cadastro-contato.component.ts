@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Contato } from '../../models';
 import { FormControl } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
+import { MessageService } from 'primeng/components/common/messageservice';
+
+import { Contato } from '../../models';
 @Component({
   selector: 'pessoa-cadastro-contato',
   templateUrl: './pessoa-cadastro-contato.component.html',
@@ -17,7 +18,7 @@ export class PessoaCadastroContatoComponent implements OnInit {
   public exbindoFormularioContato = false;
   contatoIndex: number;
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit() {
   }
@@ -39,9 +40,9 @@ export class PessoaCadastroContatoComponent implements OnInit {
     this.exbindoFormularioContato = false;
 
     if (this.editando) {
-      this.toastr.success('Contato alterado na lista com sucesso!');
+      this.messageService.add({ severity: 'success', detail: 'Contato alterado na lista com sucesso!' });
     } else {
-      this.toastr.success('Contato adicionado na lista com sucesso!');
+      this.messageService.add({ severity: 'success', detail: 'Contato adicionado na lista com sucesso!' });
     }
 
     form.reset();

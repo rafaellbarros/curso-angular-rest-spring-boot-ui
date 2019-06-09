@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
 import { Lancamento } from '@lancamentos/models';
@@ -36,7 +36,7 @@ export class LancamentoCadastroComponent implements OnInit {
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
     private lancamentoService: LancamentoService,
-    private toastr: ToastrService ,
+    private messageService: MessageService ,
     private errorHandler: ErrorHandlerService,
     private fb: FormBuilder) { }
 
@@ -70,7 +70,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   erroUpload(event) {
-    this.toastr.error('Erro ao tentar enviar anexo!');
+    this.messageService.add({ severity: 'error', detail: 'Erro ao tentar enviar anexo!' });
 
     this.uploadEmAndamento = false;
   }
@@ -140,17 +140,17 @@ export class LancamentoCadastroComponent implements OnInit {
 
   adicionarLancamento() {
     this.lancamentoService.adicionar(this.formulario.value).subscribe(lancamento => {
-      this.toastr.success('Lançamento adicionando com sucesso!');
+      this.messageService.add({ severity: 'success', detail: 'Lançamento adicionando com sucesso!' });
+
       this.router.navigate(['/lancamentos', lancamento.codigo]);
     }, error => this.errorHandler.handle(error));
   }
 
   atualizarLancamento() {
     this.lancamentoService.atualizar(this.formulario.value).subscribe(lancamento => {
-      // this.lancamento = lancamento;
       this.formulario.patchValue(lancamento);
 
-      this.toastr.success('Lançamento alterado com sucesso!');
+      this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso!' });
       this.atualizarTituloEdicao();
     }, error => this.errorHandler.handle(error));
   }
