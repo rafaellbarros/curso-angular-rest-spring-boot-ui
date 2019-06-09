@@ -12,6 +12,8 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
 
   public pessoa = new Pessoa();
   public estados: any[];
+  public cidades: any[];
+  public estadoSelecionado: number;
 
   constructor(
     private title: Title,
@@ -34,6 +36,13 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
       this.estados = lista.map(uf => ({ label: uf.nome, value: uf.codigo}));
     }, error => this.errorHandler.handle(error));
   }
+
+  carregarCidades() {
+    this.pessoaService.pesquisarCidades(this.estadoSelecionado).subscribe(lista => {
+      this.cidades = lista.map(c => ({ label: c.nome, value: c.codigo}));
+    }, error => this.errorHandler.handle(error));
+  }
+
 
 
   salvar(form: FormControl): void {

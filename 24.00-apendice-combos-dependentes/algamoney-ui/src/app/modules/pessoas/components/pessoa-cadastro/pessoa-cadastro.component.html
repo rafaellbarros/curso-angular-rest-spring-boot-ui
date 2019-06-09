@@ -52,13 +52,16 @@
         <label>Estado</label>
 
         <p-dropdown placeholder="Selecione..." [autoWidth]="false" [filter]="true"
-          [options]="impl.estados"></p-dropdown>
+          [options]="impl.estados"
+          [(ngModel)]="impl.estadoSelecionado" name="estadoSelecionado"
+          (onChange)="carregarCidades()"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Cidade</label>
-        <input type="text" [(ngModel)]="impl.pessoa.endereco.cidade" pInputText name="cidade" #cidade="ngModel" required>
-        <message [control]="cidade" error="required" severity="error" text="Informe a cidade"></message>
+
+        <p-dropdown placeholder="Selecione..." [autoWidth]="false" [filter]="true"
+          [options]="impl.cidades"></p-dropdown>
       </div>
 
       <div class="ui-g-12">
