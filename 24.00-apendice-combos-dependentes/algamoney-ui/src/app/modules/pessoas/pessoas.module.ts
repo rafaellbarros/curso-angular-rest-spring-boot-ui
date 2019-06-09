@@ -8,8 +8,8 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { TableModule } from 'primeng/components/table/table';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { PanelModule } from 'primeng/panel';
-import {DialogModule} from 'primeng/dialog';
-
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 
 import { SharedModule } from '@app/shared';
 import { PessoaCadastroComponent } from './components/pessoa-cadastro';
@@ -38,6 +38,7 @@ import { PessoaCadastroContatoComponent } from './components/pessoa-cadastro-con
     InputMaskModule,
     PanelModule,
     DialogModule,
+    DropdownModule,
 
     SharedModule,
     PessoasRoutingModule

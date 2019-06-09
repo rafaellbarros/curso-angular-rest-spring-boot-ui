@@ -49,15 +49,16 @@
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Cidade</label>
-        <input type="text" [(ngModel)]="impl.pessoa.endereco.cidade" pInputText name="cidade" #cidade="ngModel" required>
-        <message [control]="cidade" error="required" severity="error" text="Informe a cidade"></message>
+        <label>Estado</label>
+
+        <p-dropdown placeholder="Selecione..." [autoWidth]="false" [filter]="true"
+          [options]="impl.estados"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Estado</label>
-        <input type="text" [(ngModel)]="impl.pessoa.endereco.estado" pInputText name="estado" #estado="ngModel" required>
-        <message [control]="estado" error="required" severity="error" text="Informe o estado"></message>
+        <label>Cidade</label>
+        <input type="text" [(ngModel)]="impl.pessoa.endereco.cidade" pInputText name="cidade" #cidade="ngModel" required>
+        <message [control]="cidade" error="required" severity="error" text="Informe a cidade"></message>
       </div>
 
       <div class="ui-g-12">

@@ -6,11 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PessoaService } from '@app/modules/pessoas/services';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorHandlerService } from '@app/core/services/error-handler.service';
-import { Pessoa, Contato } from '@app/modules/pessoas/models';
+import { Pessoa } from '@app/modules/pessoas/models';
 
 export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroComponentImpl {
 
   public pessoa = new Pessoa();
+  public estados: any[];
 
   constructor(
     private title: Title,
@@ -23,8 +24,15 @@ export class PessoaCadastroComponentImpl implements OnInit, IPessoaCadastroCompo
 
   ngOnInit(): void {
     this.setTitle('Nova pessoa');
+    this.carregarEstados();
     const { codigo } = this.route.snapshot.params;
     if (codigo) { this.carregarPessoa(codigo); }
+  }
+
+  carregarEstados() {
+    this.pessoaService.listarEstados().subscribe(lista => {
+      this.estados = lista.map(uf => ({ label: uf.nome, value: uf.codigo}));
+    }, error => this.errorHandler.handle(error));
   }
 
 
