@@ -22,10 +22,11 @@
             <td class="col-acoes">
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
                 style="width: 2em; margin-right: 3px;"
+                class="ui-button-raised ui-button-info"
                 (click)="prepararEdicaoContato(contato, rowIndex)"></a>
-              <button pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top"
+              <a pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top"
                 style="width: 2em" class="ui-button-raised ui-button-danger"
-                (click)="removerContato(rowIndex)"></button>
+                (click)="confirmarExclusao(rowIndex)"></a>
             </td>
           </tr>
         </ng-template>

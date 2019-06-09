@@ -51,10 +51,6 @@ export class PessoaCadastroComponent implements OnInit, IPessoaCadastroComponent
     this.impl.adicionarPessoa(form);
   }
 
-  atualizarPessoa(form: FormControl): void {
-    this.impl.atualizarPessoa(form);
-  }
-
   nova(form: FormControl): void {
     this.impl.nova(form);
   }

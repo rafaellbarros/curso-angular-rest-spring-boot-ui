@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { MessageService } from 'primeng/components/common/messageservice';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 import { Contato } from '../../models';
 @Component({
@@ -18,7 +19,9 @@ export class PessoaCadastroContatoComponent implements OnInit {
   public exbindoFormularioContato = false;
   contatoIndex: number;
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private messageService: MessageService,
+    private confirmation: ConfirmationService) { }
 
   ngOnInit() {
   }
@@ -30,8 +33,8 @@ export class PessoaCadastroContatoComponent implements OnInit {
   }
 
   prepararEdicaoContato(contato: Contato, index: number): void {
-    this.contato = this.clonarContato(contato);
     this.exbindoFormularioContato = true;
+    this.contato = this.clonarContato(contato);
     this.contatoIndex = index;
   }
 
@@ -46,6 +49,15 @@ export class PessoaCadastroContatoComponent implements OnInit {
     }
 
     form.reset();
+  }
+
+  confirmarExclusao(index: number) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.removerContato(index);
+      }
+    });
   }
 
   removerContato(index: number): void {
